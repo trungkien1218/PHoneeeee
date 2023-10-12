@@ -5,10 +5,10 @@ import viteLogo from '/vite.svg'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './routes/Home'
 import About from './routes/About'
-import Login from './routes/Login'
+
 
 import ShoppingCart from './routes/ShoppingCart'
-import Signup from './routes/Signup'
+
 import Root from './routes/Root'
 
 import AppProvider from './context/AppContext'
@@ -24,10 +24,8 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       { path: "about", element: <About /> },
       { path: "products/:productId", element: <ProductDetail />},
-      { path: "login", element: <Login /> },
       { path: "products", element: <ProductList /> },
       { path: "shoppingcart", element: <ShoppingCart /> },
-      { path: "signup", element: <Signup /> },
     ]
   }
 ])

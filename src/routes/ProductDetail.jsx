@@ -15,7 +15,7 @@ export const ProductDetail = () => {
     const product = findProductById(productId);
     const handleAddItem = () => {
         onAddItem({productId: product.id,quantity:1})
-        alert(`Đã thêm sản phẩm vào giỏ hàng ${product.title} vào giỏ hàng`)
+        ///alert(`Đã thêm sản phẩm vào giỏ hàng ${product.title} vào giỏ hàng`)
     }
     return (
         <main className='main-detail'>

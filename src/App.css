@@ -4,14 +4,15 @@
     padding: 0;
 }
 
-.logo-hd{
+.logo-hd {
     background-image: url(img/lam-logos_white.png);
     background-size: cover;
     max-width: 100%;
     height: 100px;
     width: 100px;
-    
+
 }
+
 .main-prd {
     background-image: url(img/background-full.png);
     background-size: cover;
@@ -45,7 +46,7 @@
     border-radius: 16px;
     padding: 20px;
     overflow: hidden;
-    
+
 
 }
 
@@ -65,13 +66,15 @@
     background-image: url(img/HDer.png);
     background-size: cover;
 }
-.btn-hd{
-    background: rgb(247, 246, 246,0.1);
+
+.btn-hd {
+    background: rgb(247, 246, 246, 0.1);
     padding: 20px;
     border: 2px solid white;
     border-radius: 5px;
 }
-.text-nav{
+
+.text-nav {
     color: white;
     text-decoration: none;
     font-size: 17.5px;
@@ -115,6 +118,7 @@
     border: 5px solid rgb(12, 12, 12);
     border-radius: 20px;
 }
+
 .prd-d-img {
     padding: 20px;
     max-width: 100%;
@@ -123,7 +127,8 @@
 .prd-text {
     padding-top: 25px;
 }
-.btn-add{
+
+.btn-add {
     text-decoration: none;
     background-color: black;
     padding: 20px;
@@ -131,17 +136,47 @@
     margin-top: 30px;
     color: white;
     margin-bottom: 20px;
-   
+
 }
 
 /*giỏ hànggggggggggggggggg*/
 
-.flex{
+.main-cart{
+    background-image: url(img/BG-prd-detail.png);
+    background-size: cover;
+    max-width: 100%;
+    padding: 200px;
+}
+.flex {
     display: flex;
     justify-content: space-between;
+    padding: 20px;
 }
-.cart-prd{
+
+.cart-prd {
     display: grid;
-    grid-template: auto/ repeat(2, 1fr) ;
-    gap: 10px;
+    grid-template: auto/ repeat(2, 1fr);
+    gap: 30px;
+    max-width: 250px;
+}
+
+
+
+.cart-img-prd {
+    max-width: 100%;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    border-radius: 16px;
+   border: 1px solid black;
+}
+
+.table-cart {
+    border: 1px solid black;
+}
+
+.cart-name {
+    font-size: 25px;
+    font-weight: 400;
+
 }

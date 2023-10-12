@@ -19,8 +19,6 @@ const Navigation = () => {
                 <button className='btn-hd' >
                     <NavLink to={"/shoppingcart"} className='text-nav'>Shopping Cart Page</NavLink>
                 </button>
-
-
             </div>
            
         </nav>
