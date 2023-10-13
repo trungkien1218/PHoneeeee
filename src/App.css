@@ -52,7 +52,7 @@
 
 .container {
     display: block;
-    max-width: 1280px;
+    max-width: 1224px;
     width: 100%;
     margin: 0 auto;
     padding: 0 7px;
@@ -62,7 +62,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 30px;
+    padding: 10px;
     background-image: url(img/HDer.png);
     background-size: cover;
 }
@@ -141,11 +141,28 @@
 
 /*giỏ hànggggggggggggggggg*/
 
+.ShoppingCart-page{
+    text-align: center;
+    padding-bottom: 20px;
+}
+.list{
+    font-size: 25px;
+    padding-bottom: 20px;
+}
 .main-cart{
     background-image: url(img/BG-prd-detail.png);
     background-size: cover;
     max-width: 100%;
-    padding-top: 200px;
+    padding-top: 50px;
+    padding-bottom: 200px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.scroll {
+    max-width: 100%;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .flex {
     display: flex;
@@ -159,9 +176,6 @@
     gap: 30px;
     max-width: 250px;
 }
-
-
-
 .cart-img-prd {
     max-width: 100%;
     height: 100px;
@@ -180,3 +194,45 @@
     font-weight: 400;
 
 }
+
+.total-price{
+    padding-top: 50px;
+    display: grid;
+    grid-template:auto/ repeat(2, 1fr) ;
+    gap: 20px;
+}
+
+/*home -pageeeeeeeeeeeeeeee*/
+
+.BG-main{
+    background-image: url(img/BG-main.jpg);
+    background-size: cover;
+    max-width: 100%;
+    height: 700px;
+}
+.myshadow {
+    color: #ab0db9;
+ 
+    text-shadow: 0px 0px 10px #6d0240
+ }
+.sec2{
+    display: grid;
+    grid-template:auto/ repeat(2, 1fr) ;
+    gap: 20px;
+    padding-top: 50px;
+}
+.img2{
+    background-image: url(img/img2.jpg);
+    background-size: cover;
+    max-width: 100%;
+    height: 600px;
+}
+.text2{
+    font-size: 25px;
+    padding-bottom: 15px;
+}
+.myshadow2 {
+    color: #df45ca;
+ 
+    text-shadow: 0px 0px 10px #dd79bc
+ }
