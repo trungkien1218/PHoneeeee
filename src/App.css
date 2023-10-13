@@ -145,7 +145,7 @@
     background-image: url(img/BG-prd-detail.png);
     background-size: cover;
     max-width: 100%;
-    padding: 200px;
+    padding-top: 200px;
 }
 .flex {
     display: flex;

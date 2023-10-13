@@ -99,6 +99,14 @@ const initialState = {
     items: [],
     totalPrice: 0,
 }
+let saveLocal=[]
+try {
+    const localCart = localStorage.getItem(items)
+    const parsed = JSON.parse(localCart)
+    if(parsed) {
+        saveLocal.push(parsed)
+    }
+}catch{}
 
 
 const ShoppingCartProvider = ({ children }) => {
@@ -117,15 +125,24 @@ const ShoppingCartProvider = ({ children }) => {
     }
 
 
-    const totalPrice = state.items.map((item) => item.price)
-
+    
     const totalItems = state.items.length;
-
+    
     const items = state.items.map((item) => ({
         product: findProductById(item.productId), ////// chuyển cái productId thành cái thông tin sản phẩm (product) nó sẽ có tên có giá có honhf ảnh có mổ tả
         quantity: item.quantity,                  ///// và đi kèm với quantity số lượng 
-
+        
     }))
+
+    console.log(items)
+    
+    // sau khi map productId thanh product, luc nay co price
+    // dung reduce de tinh
+    const totalPrice = items.reduce((acc, item) => acc += item.product.price * item.quantity, 0) // sao lai la map??
+
+        console.log(totalPrice);
+        // react extendsion dau?
+        // duocroi day
 
 
     return (

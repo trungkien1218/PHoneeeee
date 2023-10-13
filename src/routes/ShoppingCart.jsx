@@ -69,7 +69,7 @@ const ShoppingCart = () => {
               </div>
               <div className='total-price'>
                 <p>Tổng tiền:</p>
-                <div>{product.totalPrice}</div>
+                <div>{totalPrice}</div>
               </div>
             </div>
           ))}
