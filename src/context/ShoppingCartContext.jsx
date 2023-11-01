@@ -99,6 +99,10 @@ const initialState = {
     items: [],
     totalPrice: 0,
 }
+
+
+///lưu vào localstorage
+
 let saveLocal= []
 try {
     const localCart = localStorage.getItem(items)
@@ -146,9 +150,8 @@ const ShoppingCartProvider = ({ children }) => {
     // dung reduce de tinh
     const totalPrice = items.reduce((acc, item) => acc += item.product.price * item.quantity, 0) // sao lai la map??
 
-        console.log(totalPrice);
-        // react extendsion dau?
-        // duocroi day
+       
+        
 
 
     return (
