@@ -1,6 +1,6 @@
 //thêm sửa , xóa, sản phẩm khỏi giỏ hàng
 
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { AppContext } from "./AppContext";
 import { useAppContext } from "../hooks/useAppContext";
 
@@ -99,18 +99,23 @@ const initialState = {
     items: [],
     totalPrice: 0,
 }
-let saveLocal=[]
+let saveLocal= []
 try {
     const localCart = localStorage.getItem(items)
     const parsed = JSON.parse(localCart)
     if(parsed) {
-        saveLocal.push(parsed)
+        saveLocal=parsed
     }
 }catch{}
 
 
 
 const ShoppingCartProvider = ({ children }) => {
+ const [prd, setPrd] = useState(saveLocal)
+ useEffect(() =>{
+    localStorage.setItem(items,JSON.stringify(prd))
+ },[prd])
+
     const [state, dispatch] = useReducer(shoppingCartReducer, initialState);
 
     const { findProductById } = useAppContext();
@@ -149,7 +154,7 @@ const ShoppingCartProvider = ({ children }) => {
     return (
         <ShoppingCartContext.Provider
             value={{
-                ...state, items, totalItems,totalPrice,
+                ...state, items, totalItems,totalPrice,prd,setPrd,
                 onAddItem: handleAddItem,
                 onIncreItem: handleIncreItem,
                 onDecreItem: handleDecreItem,
