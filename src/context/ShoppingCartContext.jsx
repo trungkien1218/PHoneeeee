@@ -105,7 +105,7 @@ const initialState = {
 
 let saveLocal= []
 try {
-    const localCart = localStorage.getItem(items)
+    const localCart = localStorage.get("items")
     const parsed = JSON.parse(localCart)
     if(parsed) {
         saveLocal=parsed
