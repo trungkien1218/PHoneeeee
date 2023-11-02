@@ -103,22 +103,23 @@ const initialState = {
 
 ///lưu vào localstorage
 
-let saveLocal= []
-try {
-    const localCart = localStorage.getItem("items")
-    const parsed = JSON.parse(localCart)
-    if(parsed) {
-        saveLocal=parsed
-    }
-}catch{}
+
 
 
 
 const ShoppingCartProvider = ({ children }) => {
- const [prd, setPrd] = useState(saveLocal)
- useEffect(() =>{
-    localStorage.setItem(items,JSON.stringify(prd))
- },[prd])
+    const[prd, setPrd] = useState([]);
+    useEffect(()=>{
+        const data = localStorage.getItem("items");
+    
+        if(data){
+            const items = JSON.parse(data);
+            setPrd(items)
+        }
+    }, [])
+    useEffect(() =>{
+        localStorage.setItem(items,JSON.stringify(prd))
+     },[prd])
 
     const [state, dispatch] = useReducer(shoppingCartReducer, initialState);
 
