@@ -108,6 +108,8 @@ const initialState = {
 
 
 const ShoppingCartProvider = ({ children }) => {
+   
+   
     const[prd, setPrd] = useState([]);
     useEffect(()=>{
         const data = localStorage.getItem("items");
