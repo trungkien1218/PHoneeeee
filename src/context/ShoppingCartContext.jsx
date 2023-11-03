@@ -3,6 +3,7 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { AppContext } from "./AppContext";
 import { useAppContext } from "../hooks/useAppContext";
+import { json } from "react-router-dom";
 
 // dữ liệu trong giỏ hàng
 export const ShoppingCartContext = createContext({});
@@ -14,6 +15,10 @@ export const shoppingCartReducer = (state, action) => {
     let newItems;
 
     switch (action.type) {
+        case "SET_CART": {
+            return action.payload;
+        }
+
         case "ADD_ITEM": {
             const exist = state.items.find(                           //// đoạn này là thêm sản phẩm vào giỏ hàng  cái find kia có tác dụng là tìm kiếm
 
@@ -108,20 +113,9 @@ const initialState = {
 
 
 const ShoppingCartProvider = ({ children }) => {
-   
-   
-    const[prd, setPrd] = useState([]);
-    useEffect(()=>{
-        const data = localStorage.getItem("items");
-    
-        if(data){
-            const items = JSON.parse(data);
-            setPrd(items)
-        }
-    }, [])
-    useEffect(() =>{
-        localStorage.setItem(items,JSON.stringify(prd))
-     },[prd])
+
+
+
 
     const [state, dispatch] = useReducer(shoppingCartReducer, initialState);
 
@@ -138,29 +132,41 @@ const ShoppingCartProvider = ({ children }) => {
     }
 
 
-    
+
     const totalItems = state.items.length;
-    
+
     const items = state.items.map((item) => ({
         product: findProductById(item.productId), ////// chuyển cái productId thành cái thông tin sản phẩm (product) nó sẽ có tên có giá có honhf ảnh có mổ tả
         quantity: item.quantity,                  ///// và đi kèm với quantity số lượng 
-        
+
     }))
 
     console.log(items)
-    
+
     // sau khi map productId thanh product, luc nay co price
     // dung reduce de tinh
     const totalPrice = items.reduce((acc, item) => acc += item.product.price * item.quantity, 0) // sao lai la map??
 
-       
-        
+
+    useEffect(() => {
+        const data = localStorage.getItem("state");
+
+        if (data) {
+            const json = JSON.parse(data);
+            dispatch({type: "SET_CART", payload: json});
+        }
+    }, [])
+
+    useEffect(() => {
+        if (state.items.length > 0)
+            localStorage.setItem("state", JSON.stringify(state))
+    }, [state]);
 
 
     return (
         <ShoppingCartContext.Provider
             value={{
-                ...state, items, totalItems,totalPrice,prd,setPrd,
+                ...state, items, totalItems, totalPrice,
                 onAddItem: handleAddItem,
                 onIncreItem: handleIncreItem,
                 onDecreItem: handleDecreItem,
