@@ -6,19 +6,27 @@ import { useParams } from 'react-router-dom'
 import { useAppContext } from '../hooks/useAppContext'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-
+import {
+  DeleteOutlined
+} from '@ant-design/icons';
 const ShoppingCart = () => {
   const { items, totalPrice } = useShoppingCartContext();
 
-  const { onIncreItem, onDecreItem } = useShoppingCartContext();
+  const { onIncreItem, onDecreItem, onRemoveItem, onClearAll } = useShoppingCartContext();
 
   const handleIncreItem = (product) => {
-    console.log(product)
+
     onIncreItem({ productId: product.id, quantity: + 1 })
   }
   const handleDecreItem = (product) => {
-    console.log(product)
+
     onDecreItem({ productId: product.id, quantity: -1 })
+  }
+  const handleRemoveItem = (product) => {
+    onRemoveItem({ productId: product.id, quantity: 0 })
+  }
+  const handleClearAll = (product) => {
+    onClearAll({ productId: product.id, quantity: 0 })
   }
   {/*const handleTotalPrice = (price) => {
     console.log(price)
@@ -60,16 +68,21 @@ const ShoppingCart = () => {
                     <Button onClick={() => handleDecreItem(product.product)}> - </Button>
                     <span style={{ padding: '10px' }}>{product.quantity}</span>
                     <Button onClick={() => handleIncreItem(product.product)}>+</Button>
+                    <span style={{ padding: '10px' }}>
+                      <DeleteOutlined onClick={() => handleRemoveItem(product.product)} />
+                    </span>
                   </div>
                 </div>
               </div>
+              <Button onClick={() => handleClearAll(product.product)}> Clear all </Button>
             </div>
           ))}
         </div>
         <div className='total-price'>
-                <p style={{fontSize:'30px', fontWeight:'600'}}>Tổng tiền:</p>
-                <div style={{fontSize:'30px'}}>${totalPrice}</div>
-              </div>
+          <p style={{ fontSize: '30px', fontWeight: '600' }}>Tổng tiền:</p>
+          <div style={{ fontSize: '30px' }}>${totalPrice}</div>
+         
+        </div>
       </main>
     </>
   )

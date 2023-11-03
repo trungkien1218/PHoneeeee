@@ -15,9 +15,10 @@ export const shoppingCartReducer = (state, action) => {
     let newItems;
 
     switch (action.type) {
+
         case "SET_CART": {
             return action.payload;
-        }
+        } /// phần này tạo ra để lưu vào localStorage
 
         case "ADD_ITEM": {
             const exist = state.items.find(                           //// đoạn này là thêm sản phẩm vào giỏ hàng  cái find kia có tác dụng là tìm kiếm
@@ -81,17 +82,12 @@ export const shoppingCartReducer = (state, action) => {
 
         }
         case "CLEAR_CART": {
-
-        }
-        case "TOTAL_PRICE": {
-            const initialTotalPrice = state.items.reduce(
-                (total, item) => total + item.quantity * item.price,
-                0
-            );
             return {
                 ...state,
-                totalPrice: initialTotalPrice,
+                items: [],
             }
+        }
+        case "TOTAL_PRICE": {
 
         }
         default: {
@@ -105,17 +101,7 @@ const initialState = {
     totalPrice: 0,
 }
 
-
-///lưu vào localstorage
-
-
-
-
-
 const ShoppingCartProvider = ({ children }) => {
-
-
-
 
     const [state, dispatch] = useReducer(shoppingCartReducer, initialState);
 
@@ -130,8 +116,12 @@ const ShoppingCartProvider = ({ children }) => {
     const handleDecreItem = ({ productId, quantity }) => {
         dispatch({ type: "DECREASE_QUANTITY", payload: { productId, quantity } })
     }
-
-
+    const handleRemoveItem = ({ productId, quantity }) => {
+        dispatch({ type: "REMOVE_ITEM", payload: { productId, quantity } })
+    }
+    const handleClearAll = ({ productId, quantity }) => {
+        dispatch({ type: "CLEAR_CART", payload: { productId, quantity } })
+    }
 
     const totalItems = state.items.length;
 
@@ -148,12 +138,14 @@ const ShoppingCartProvider = ({ children }) => {
     const totalPrice = items.reduce((acc, item) => acc += item.product.price * item.quantity, 0) // sao lai la map??
 
 
+    ///lưu vào localstorage
+
     useEffect(() => {
         const data = localStorage.getItem("state");
 
         if (data) {
             const json = JSON.parse(data);
-            dispatch({type: "SET_CART", payload: json});
+            dispatch({ type: "SET_CART", payload: json });
         }
     }, [])
 
@@ -170,7 +162,8 @@ const ShoppingCartProvider = ({ children }) => {
                 onAddItem: handleAddItem,
                 onIncreItem: handleIncreItem,
                 onDecreItem: handleDecreItem,
-
+                onRemoveItem: handleRemoveItem,
+                onClearAll: handleClearAll
             }}
         >
             {children}
